@@ -1,3 +1,4 @@
 #!/usr/bin/env python
 
-print('Bonjour Chochodile !')
+name: str = input('Prénom : ')
+print('Bonjour ' + name + ' !')
