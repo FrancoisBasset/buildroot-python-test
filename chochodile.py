@@ -1,4 +1,16 @@
 #!/usr/bin/env python
 
-name: str = input('Prénom : ')
-print('Bonjour ' + name + ' !')
+import os
+
+text: str = ''
+
+while True:
+    text: str = input('Calcul : ')
+
+    if text == 'q':
+        break
+    
+    print(eval(text))
+    print()
+
+os.system('poweroff')

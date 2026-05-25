@@ -1,0 +1,15 @@
+--- a/core/isolinux.asm
++++ b/core/isolinux.asm
+@@ -1111,12 +1111,6 @@
+ ;
+ %include "init.inc"
+ 
+-; Tell the user we got this far...
+-%ifndef DEBUG_MESSAGES			; Gets messy with debugging on
+-		mov si,copyright_str
+-		pm_call pm_writestr
+-%endif
+-
+ ;
+ ; Now we're all set to start with our *real* business.	First load the
+ ; configuration file (if any) and parse it.

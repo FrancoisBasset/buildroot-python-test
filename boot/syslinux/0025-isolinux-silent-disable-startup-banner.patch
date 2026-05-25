@@ -1,0 +1,19 @@
+--- a/core/isolinux.asm
++++ b/core/isolinux.asm
+@@ -248,15 +248,7 @@
+ 		mov eax,[si]
+ 		mov [GetlinsecPtr],eax
+ 
+-		; Show signs of life
+-		mov si,syslinux_banner
+-		call writestr_early
+-%ifdef DEBUG_MESSAGES
+-		mov si,copyright_str
+-%else
+-		mov si,[BIOSName]
+-%endif
+-		call writestr_early
++		; Silent boot: do not print ISOLINUX banner or BIOS tag.
+ 
+ 		;
+ 		; Before modifying any memory, get the checksum of bytes

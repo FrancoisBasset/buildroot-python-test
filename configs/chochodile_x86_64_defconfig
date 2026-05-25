@@ -17,6 +17,7 @@ BR2_TARGET_GENERIC_ISSUE=""
 BR2_ROOTFS_OVERLAY="board/chochodile/rootfs_overlay"
 BR2_ROOTFS_POST_BUILD_SCRIPT="board/chochodile/post-build.sh"
 BR2_ROOTFS_POST_IMAGE_SCRIPT="board/chochodile/post-image.sh"
+BR2_LINUX_KERNEL_CONFIG_FRAGMENT_FILES="board/chochodile/linux-silent.fragment"
 
 BR2_PACKAGE_PYTHON3=y
 BR2_PACKAGE_KBD=y

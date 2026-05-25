@@ -1,0 +1,7 @@
+# Silence very early x86 boot messages (e.g. "Decompressing Linux...")
+# Keep errors visible.
+CONFIG_X86_VERBOSE_BOOTUP=n
+CONFIG_EXPERT=y
+CONFIG_EARLY_PRINTK=n
+CONFIG_EARLY_PRINTK_DBGP=n
+CONFIG_EARLY_PRINTK_USB=n

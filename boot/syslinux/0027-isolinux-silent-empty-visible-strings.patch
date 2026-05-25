@@ -1,0 +1,30 @@
+--- a/core/isolinux.asm
++++ b/core/isolinux.asm
+@@ -1038,10 +1038,8 @@
+ ; -----------------------------------------------------------------------------
+ 
+ 		global syslinux_banner, copyright_str
+-syslinux_banner	db CR, LF, MY_NAME, ' ', VERSION_STR, ' ', DATE_STR, ' ', 0
+-copyright_str   db ' Copyright (C) 1994-'
+-		asciidec YEAR
+-		db ' H. Peter Anvin et al', CR, LF, 0
++syslinux_banner	db 0
++copyright_str   db 0
+ isolinux_str	db 'isolinux: ', 0
+ %ifdef DEBUG_MESSAGES
+ startup_msg:	db 'Starting up, DL = ', 0
+@@ -1070,11 +1068,11 @@
+ crlf_msg	db CR, LF
+ null_msg	db 0
+ 
+-bios_cdrom_str	db 'ETCD', 0
++bios_cdrom_str	db 0
+ %ifndef DEBUG_MESSAGES
+-bios_cbios_str	db 'CHDD', 0
+-bios_ebios_str	db 'EHDD' ,0
++bios_cbios_str	db 0
++bios_ebios_str	db 0
+ %endif
+ 
+ 		alignz 4
+ 		global bios_cdrom
