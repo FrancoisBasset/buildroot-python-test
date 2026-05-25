@@ -1,0 +1,16 @@
+#!/bin/sh
+
+case "$1" in
+	start)
+		# French AZERTY keymap on Linux console.
+		# Requires kbd (loadkeys + keymaps).
+		if [ -x /usr/bin/loadkeys ]; then
+			# latin9 provides proper mappings for €, œ, Œ, and ç on consoles.
+			/usr/bin/loadkeys fr-latin9 >/dev/null 2>&1 || /usr/bin/loadkeys fr >/dev/null 2>&1 || true
+		fi
+		# Ensure the console font includes French accented glyphs.
+		[ -x /usr/bin/setfont ] && /usr/bin/setfont /usr/share/consolefonts/Lat2-Terminus16.psfu.gz >/dev/null 2>&1 || true
+		;;
+esac
+
+exit 0
