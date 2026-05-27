@@ -1,11 +1,10 @@
 #!/usr/bin/env python
-
-import os
+import subprocess
 
 text: str = ''
 
 while True:
-    text: str = input('Calcul : ')
+    text: str = input('Calcul (q pour quitter) : ')
 
     if text == 'q':
         break
@@ -13,4 +12,4 @@ while True:
     print(eval(text))
     print()
 
-os.system('poweroff')
+subprocess.run(['poweroff'])
