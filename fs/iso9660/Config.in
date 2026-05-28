@@ -44,6 +44,15 @@ config BR2_TARGET_ROOTFS_ISO9660_ISOLINUX
 	bool "isolinux"
 	depends on BR2_TARGET_SYSLINUX_ISOLINUX
 	select BR2_TARGET_ROOTFS_ISO9660_BIOS_BOOTLOADER
+	select BR2_TARGET_ROOTFS_ISO9660_EFI_BOOTLOADER \
+		if BR2_TARGET_GRUB2_HAS_EFI_BOOT
+	help
+	  Use isolinux as the legacy BIOS bootloader for the ISO9660
+	  image.
+
+	  If an EFI-capable Grub 2 platform is also enabled, Grub 2
+	  is used for the EFI boot image while isolinux remains the
+	  BIOS bootloader.
 
 endchoice
 
@@ -60,6 +69,20 @@ config BR2_TARGET_ROOTFS_ISO9660_BOOT_MENU
 	help
 	  Use this option to provide a custom bootloader configuration
 	  file (grub.cfg for Grub 2, isolinux.cfg for isolinux).
+
+	  Note that the strings __KERNEL_PATH__ and __INITRD_PATH__
+	  will automatically be replaced by the path to the kernel and
+	  initrd images respectively.
+
+config BR2_TARGET_ROOTFS_ISO9660_EFI_BOOT_MENU
+	string "EFI boot menu config file"
+	depends on BR2_TARGET_ROOTFS_ISO9660_ISOLINUX
+	depends on BR2_TARGET_ROOTFS_ISO9660_EFI_BOOTLOADER
+	default "fs/iso9660/grub-efi-isolinux.cfg"
+	help
+	  Use this option to provide a custom Grub 2 EFI
+	  configuration file when isolinux is used for BIOS boot and
+	  Grub 2 is used for EFI boot.
 
 	  Note that the strings __KERNEL_PATH__ and __INITRD_PATH__
 	  will automatically be replaced by the path to the kernel and
