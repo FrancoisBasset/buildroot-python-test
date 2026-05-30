@@ -1,26 +1,57 @@
-Buildroot is a simple, efficient and easy-to-use tool to generate embedded
-Linux systems through cross-compilation.
+Configuration
 
-The documentation can be found in docs/manual. You can generate a text
-document with 'make manual-text' and read output/docs/manual/manual.text.
-Online documentation can be found at https://buildroot.org/docs.html
+  make help
+  make list-defconfigs
+  make <board>_defconfig
+  make menuconfig
+  make savedefconfig
+  make olddefconfig
 
-To build and use the buildroot stuff, do the following:
+  Build
 
-1) run 'make menuconfig'
-2) select the target architecture and the packages you wish to compile
-3) run 'make'
-4) wait while it compiles
-5) find the kernel, bootloader, root filesystem, etc. in output/images
+  make
+  make -j$(nproc)
+  make source              # télécharge les sources sans compiler
 
-You do not need to be root to build or run buildroot.  Have fun!
+  Images générées
 
-Buildroot comes with a basic configuration for a number of boards. Run
-'make list-defconfigs' to view the list of provided configurations.
+  ls output/images/
+  ls output/target/
+  ls output/build/
 
-Please feed suggestions, bug reports, insults, and bribes back to the
-buildroot mailing list: buildroot@buildroot.org
-You can also find us on #buildroot on OFTC IRC.
+  Nettoyage
 
-If you would like to contribute patches, please read
-https://buildroot.org/manual.html#submitting-patches
+  make clean               # supprime les artefacts de build
+  make distclean           # reset complet, supprime aussi .config
+
+  Paquets
+
+  make <pkg>-rebuild
+  make <pkg>-reconfigure
+  make <pkg>-dirclean
+  make <pkg>-source
+
+  Exemples :
+
+  make busybox-rebuild
+  make linux-reconfigure
+  make openssh-dirclean
+
+  Menus spécifiques
+
+  make linux-menuconfig
+  make busybox-menuconfig
+  make uboot-menuconfig
+
+  Debug / analyse
+
+  make graph-depends
+  make graph-build
+  make legal-info
+  make show-targets
+
+  Build séparé recommandé
+
+  make O=output-myboard <board>_defconfig
+  make O=output-myboard menuconfig
+  make O=output-myboard -j$(nproc)
