@@ -19,6 +19,14 @@ if [ ! -x "${TARGET_DIR}/usr/bin/python3" ]; then
 	exit 1
 fi
 
+if [ -f "${TARGET_DIR}/etc/inittab" ]; then
+	sed -i \
+		-e 's~^::shutdown:/etc/init.d/rcK$~::shutdown:/etc/init.d/rcK >/dev/null 2>\&1~' \
+		-e 's~^::shutdown:/sbin/swapoff -a$~::shutdown:/sbin/swapoff -a >/dev/null 2>\&1~' \
+		-e 's~^::shutdown:/bin/umount -a -r$~::shutdown:/bin/umount -a -r >/dev/null 2>\&1~' \
+		"${TARGET_DIR}/etc/inittab"
+fi
+
 rm -f \
 	"${TARGET_DIR}/etc/init.d/S01seedrng" \
 	"${TARGET_DIR}/etc/init.d/S01syslogd" \

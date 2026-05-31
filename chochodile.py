@@ -8,8 +8,11 @@ while True:
 
     if text == 'q':
         break
-    
-    print(eval(text))
-    print()
+
+    try:
+        print(eval(text))
+        print()
+    except SyntaxError, NameError:
+        pass
 
 subprocess.run(['poweroff'])
